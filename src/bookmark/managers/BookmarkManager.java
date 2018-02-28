@@ -1,5 +1,8 @@
 package bookmark.managers;
 
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+
 import bookmark.dao.BookmarkDao;
 import bookmark.entities.Book;
 import bookmark.entities.Bookmark;
@@ -7,6 +10,8 @@ import bookmark.entities.Movie;
 import bookmark.entities.User;
 import bookmark.entities.UserBookmark;
 import bookmark.entities.WebLink;
+import bookmark.util.HttpConnect;
+import bookmark.util.IOUtil;
 
 public class BookmarkManager {
 	private static BookmarkManager instance = new BookmarkManager();
@@ -66,6 +71,24 @@ public class BookmarkManager {
 		UserBookmark userBookmark = new UserBookmark();
 		userBookmark.setUser(user);
 		userBookmark.setBookmark(bookmark);
+		
+		if (bookmark instanceof WebLink) {
+			try {				
+				String url = ((WebLink)bookmark).getUrl();
+				if (!url.endsWith(".pdf")) {
+					String webpage = HttpConnect.download(((WebLink)bookmark).getUrl());
+					if (webpage != null) {
+						IOUtil.write(webpage, bookmark.getId());
+					}
+				}				
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (URISyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		
 		dao.saveUserBookmark(userBookmark);
 	}
