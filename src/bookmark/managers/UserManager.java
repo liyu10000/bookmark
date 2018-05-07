@@ -1,5 +1,7 @@
 package bookmark.managers;
 
+import java.util.List;
+
 import bookmark.dao.UserDao;
 import bookmark.entities.User;
 
@@ -28,7 +30,7 @@ public class UserManager {
 		return user;
 	}
 	
-	public User[] getUsers() {
+	public List<User> getUsers() {
 		return dao.getUsers();
 	}
 }

@@ -1,5 +1,7 @@
 package bookmark;
 
+import java.util.List;
+
 import bookmark.constants.KidFriendlyStatus;
 import bookmark.constants.UserType;
 import bookmark.controllers.BookmarkController;
@@ -9,23 +11,20 @@ import bookmark.partner.Shareable;
 
 public class View {
 
-	public static void browse(User user, Bookmark[][] bookmarks) {
+	public static void browse(User user, List<List<Bookmark>> bookmarks) {
 		System.out.println("\n" + user.getEmail() + " is browsing items...");
 		int bookmarkCount = 0;
 
-		for (Bookmark[] bookmarkList : bookmarks) {
+		for (List<Bookmark> bookmarkList : bookmarks) {
 			for (Bookmark bookmark : bookmarkList) {
-				if (bookmarkCount < DataStore.USER_BOOKMARK_LIMIT) {
+				//if (bookmarkCount < DataStore.USER_BOOKMARK_LIMIT) {
 					boolean isBookmarked = getBookmarkDecision(bookmark);
 					if (isBookmarked) {
 						bookmarkCount++;
-
 						BookmarkController.getInstance().saveUserBookmark(user, bookmark);
-
 						System.out.println("New item bookmarked..." + bookmark);
 					}
-				}
-
+				//}
 				
 				if (user.getUserType().equals(UserType.EDITOR) || user.getUserType().equals(UserType.CHIEF_EDITOR)) {
 					// Mark as kid friendly
@@ -35,8 +34,7 @@ public class View {
 						if (!kidFriendlyStatusDecision.equals(KidFriendlyStatus.UNKNOWN)) {
 							BookmarkController.getInstance().setKidFriendlyStatus(user, bookmark, kidFriendlyStatusDecision);
 						}
-					}
-					
+					}				
 					// Share bookmarks
 					if (bookmark instanceof Shareable && bookmark.getKidFriendlyStatus().equals(KidFriendlyStatus.APPROVED)) {
 						boolean shareDecision = getShareDecision();

@@ -1,10 +1,12 @@
 package bookmark.dao;
 
+import java.util.List;
+
 import bookmark.DataStore;
 import bookmark.entities.User;
 
 public class UserDao {
-	public User[] getUsers() {
+	public List<User> getUsers() {
 		return DataStore.getUsers();
 	}
 }

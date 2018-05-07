@@ -10,16 +10,15 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 public class IOUtil {
 	
-	public static void read(String[] data, String filename) {
+	public static void read(List<String> data, String filename) {
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filename), "UTF-8"))) {
 			String line;
-			int count = 0;
 			while ((line = br.readLine()) != null) {
-				data[count] = line;
-				count++;
+				data.add(line);
 			}
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
