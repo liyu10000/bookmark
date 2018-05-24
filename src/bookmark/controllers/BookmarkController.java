@@ -1,5 +1,6 @@
 package bookmark.controllers;
 
+import bookmark.constants.KidFriendlyStatus;
 import bookmark.entities.Bookmark;
 import bookmark.entities.User;
 import bookmark.managers.BookmarkManager;
@@ -18,7 +19,7 @@ public class BookmarkController {
 		BookmarkManager.getInstance().saveUserBookmark(user, bookmark);
 	}
 
-	public void setKidFriendlyStatus(User user, Bookmark bookmark, String kidFriendlyStatusDecision) {
+	public void setKidFriendlyStatus(User user, Bookmark bookmark, KidFriendlyStatus kidFriendlyStatusDecision) {
 		BookmarkManager.getInstance().setKidFriendlyStatus(user, bookmark, kidFriendlyStatusDecision);
 	}
 
