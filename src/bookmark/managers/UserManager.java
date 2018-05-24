@@ -3,6 +3,7 @@ package bookmark.managers;
 import java.util.List;
 
 import bookmark.constants.Gender;
+import bookmark.constants.UserType;
 import bookmark.dao.UserDao;
 import bookmark.entities.User;
 
@@ -18,7 +19,7 @@ public class UserManager {
 	}
 
 	public User createUser(long id, String email, String password, String firstName, String lastName, Gender gender,
-			String userType) {
+			UserType userType) {
 		User user = new User();
 		user.setId(id);
 		user.setEmail(email);
