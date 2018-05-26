@@ -2,6 +2,7 @@ package bookmark;
 
 import java.util.List;
 
+import bookmark.bgjobs.WebpageDownloaderTask;
 import bookmark.entities.Bookmark;
 import bookmark.entities.User;
 import bookmark.managers.BookmarkManager;
@@ -47,6 +48,14 @@ public class Launch {
 	public static void main(String[] args) {
 		loadData();
 		start();
+		
+		// Background Jobs
+		runDownloaderJob();
+	}
+	
+	private static void runDownloaderJob() {
+		WebpageDownloaderTask task = new WebpageDownloaderTask(true);
+		(new Thread(task)).start();
 	}
 
 }
