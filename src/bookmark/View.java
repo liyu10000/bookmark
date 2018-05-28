@@ -22,7 +22,7 @@ public class View {
 					if (isBookmarked) {
 						bookmarkCount++;
 						BookmarkController.getInstance().saveUserBookmark(user, bookmark);
-						System.out.println("New item bookmarked..." + bookmark);
+						System.out.println("New item bookmarked... " + bookmark);
 					}
 				//}
 				
@@ -43,6 +43,7 @@ public class View {
 						}
 					}
 				}
+				
 			}
 		}
 

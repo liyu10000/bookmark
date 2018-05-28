@@ -50,7 +50,7 @@ public class Launch {
 		start();
 		
 		// Background Jobs
-		runDownloaderJob();
+		//runDownloaderJob();
 	}
 	
 	private static void runDownloaderJob() {

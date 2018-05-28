@@ -100,6 +100,7 @@ public class BookmarkManager {
 	public void setKidFriendlyStatus(User user, Bookmark bookmark, KidFriendlyStatus kidFriendlyStatusDecision) {
 		bookmark.setKidFriendlyStatus(kidFriendlyStatusDecision);
 		bookmark.setKidFriednlyMarkedBy(user);
+		dao.updateKidFriendlyStatus(bookmark);
 		System.out.println("Kid-friendly status: " + kidFriendlyStatusDecision + ", " + bookmark);
 	}
 
@@ -112,6 +113,8 @@ public class BookmarkManager {
 		} else if (bookmark instanceof WebLink) {
 			System.out.println(((WebLink) bookmark).getItemData());;
 		}
+		
+		dao.sharedByInfo(bookmark);
 	}
 
 }
